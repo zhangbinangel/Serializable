@@ -26,6 +26,7 @@ public class Light implements Serializable,Cloneable {
             Light cloneLight = (Light) mLight.clone();
             cloneLight.name = "clone";
             System.out.println(cloneLight.name+","+mLight.name);
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
