@@ -11,7 +11,7 @@ import java.io.Serializable;
 /**
  * Created by Administrator on 2016/10/7.
  */
-public class Light implements Serializable {
+public class Light implements Serializable,Cloneable {
     public static final String TAG = "Light";
     public static void main(String[] args)
     {
@@ -21,9 +21,16 @@ public class Light implements Serializable {
 
             Light mLight = deSerialization(light);
             System.out.println("light:"+mLight.name+","+mLight.age+","+mLight.sex+","+mLight.weight);
+
+
+            Light cloneLight = (Light) mLight.clone();
+            cloneLight.name = "clone";
+            System.out.println(cloneLight.name+","+mLight.name);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
 
@@ -69,5 +76,14 @@ public class Light implements Serializable {
         long endTime = System.currentTimeMillis();
         System.out.println("反序列化耗时为:" + (endTime - startTime));
         return light;
+    }
+
+    /*
+    * 克隆
+    * */
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
